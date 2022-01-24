@@ -2,10 +2,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const mode = 'development';
 const srcDir = path.resolve(__dirname, 'src');
 const outDir = path.resolve(__dirname, '../', 'dist');
-const indexHtmlPath = path.resolve(__dirname, 'public', 'index.html');
+const publicDir = path.resolve(__dirname, 'public');
 
 class Rule {
     constructor() {}
@@ -33,17 +32,11 @@ const TSXRule = new Rule()
 const JSXRule = new Rule()
     .setTest(/\.jsx$/)
     .setExclude(/node_modules/)
-    .setUse({
-        loader: 'babel-loader',
-        options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
-        }
-    });
+    .setUse({loader: 'babel-loader',options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
 
 module.exports = {
-    context: srcDir,
-    mode: mode,
-    entry: ['@babel/polyfill', './index.jsx'],
+    mode: 'development',
+    entry: ['@babel/polyfill', path.resolve(srcDir, 'index.tsx')],
     output: {
         path: outDir,
         filename: 'main.js'
@@ -52,11 +45,11 @@ module.exports = {
         extensions: ['.tsx', '.jsx', '.js', '.ts'],
     },
     module: {
-        rules: [JSXRule, TSXRule]
+        rules: [TSXRule]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: indexHtmlPath,
+            template: path.resolve(publicDir, 'index.html'),
         }),
         new CleanWebpackPlugin(),
     ],

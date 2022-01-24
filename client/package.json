@@ -2,7 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "description": "Front-end part of e-commerce app",
-  "main": "index.jsx",
+  "main": "index.tsx",
   "scripts": {
     "dev": "npx webpack-dev-server --mode development --open",
     "build": "npx webpack --mode production",
