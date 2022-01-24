@@ -7,7 +7,7 @@ const srcDir = path.resolve(__dirname, 'src');
 const outDir = path.resolve(__dirname, '../', 'dist');
 const indexHtmlPath = path.resolve(__dirname, 'public', 'index.html');
 
-class RuleBuilder {
+class Rule {
     constructor() {}
     setTest(regExp) {
         this.test = regExp;
@@ -25,16 +25,12 @@ class RuleBuilder {
         return this;
     }
 }
-const TSXRule = new RuleBuilder()
+
+const TSXRule = new Rule()
     .setTest(/\.tsx?$/)
     .setExclude(/node_modules/)
     .setUse('ts-loader');
-// {
-//     test: /\.tsx?$/,
-//     exclude: /node_modules/,
-//     use: 'ts-loader'
-// }
-const JSXRule = new RuleBuilder()
+const JSXRule = new Rule()
     .setTest(/\.jsx$/)
     .setExclude(/node_modules/)
     .setUse({
@@ -43,16 +39,6 @@ const JSXRule = new RuleBuilder()
             presets: ['@babel/preset-react', '@babel/preset-env']
         }
     });
-// {
-//     test: /\.jsx$/,
-//     exclude: /node_modules/,
-//     use: {
-//         loader: 'babel-loader',
-//         options: {
-//             presets: ['@babel/preset-react', '@babel/preset-env']
-//         }
-//     }
-// }
 
 module.exports = {
     context: srcDir,
@@ -63,7 +49,7 @@ module.exports = {
         filename: 'main.js'
     },
     resolve: {
-        extensions: ['.tsx', '.jsx', '.js', '.ts']
+        extensions: ['.tsx', '.jsx', '.js', '.ts'],
     },
     module: {
         rules: [JSXRule, TSXRule]
@@ -73,5 +59,8 @@ module.exports = {
             template: indexHtmlPath,
         }),
         new CleanWebpackPlugin(),
-    ]
+    ],
+    devServer: {
+        port: 7000,
+    }
 }

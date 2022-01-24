@@ -4,7 +4,9 @@
   "description": "Front-end part of e-commerce app",
   "main": "index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx webpack-dev-server --mode development --open",
+    "build": "npx webpack --mode production",
+    "clean": "cd .. && npm run clean"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@types/material-ui": "^0.21.12",
     "@types/react": "^17.0.38",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
@@ -28,9 +31,14 @@
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
     "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.3.1",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

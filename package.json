@@ -2,13 +2,17 @@
   "name": "e-commerce-app",
   "version": "1.0.0",
   "description": "Fullstack E-commerce app",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
+    "dev-server": "cd client && npm run dev",
+    "dev-client": "cd server && npm run dev",
+    "app": "cd ./server/src && node server.js",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "client": "cd client && npm run build",
+    "server": "cd server && npm run build",
+    "clean": "rimraf ./dist && rimraf ./server/src/server.js"
   },
   "repository": {
-    "client-build": "cd client && npx webpack",
-    "server-build": "cd server && npx ts-node",
     "type": "git",
     "url": "git+https://github.com/narandaevd/e-commerce-app.git"
   },
@@ -28,5 +32,14 @@
   "bugs": {
     "url": "https://github.com/narandaevd/e-commerce-app/issues"
   },
-  "homepage": "https://github.com/narandaevd/e-commerce-app#readme"
+  "homepage": "https://github.com/narandaevd/e-commerce-app#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
+  }
 }
