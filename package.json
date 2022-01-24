@@ -1,0 +1,32 @@
+{
+  "name": "e-commerce-app",
+  "version": "1.0.0",
+  "description": "Fullstack E-commerce app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "client-build": "cd client && npx webpack",
+    "server-build": "cd server && npx ts-node",
+    "type": "git",
+    "url": "git+https://github.com/narandaevd/e-commerce-app.git"
+  },
+  "keywords": [
+    "e-commerce",
+    "fullstack",
+    "javascript",
+    "typescript",
+    "postgresql",
+    "express",
+    "node",
+    "react",
+    "redux"
+  ],
+  "author": "\"Damir Narandaev\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narandaevd/e-commerce-app/issues"
+  },
+  "homepage": "https://github.com/narandaevd/e-commerce-app#readme"
+}
