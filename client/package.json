@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.16.7",
     "@types/material-ui": "^0.21.12",
     "@types/react": "^17.0.38",
+    "@types/react-redux": "^7.1.22",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
@@ -41,6 +42,9 @@
     "@mui/material": "^5.3.1",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-saga": "^1.1.3"
   }
 }
