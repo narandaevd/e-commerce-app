@@ -1,5 +1,4 @@
 import Redux from 'redux';
-
 const START_LOAD: string = 'START_LOAD';    
 const INCREMENT: string = 'INCREMENT';    
 const DECREMENT: string = 'DECREMENT';    
@@ -39,16 +38,27 @@ function countReducer(state: counterState = initialState, action: Redux.Action):
     }
 }
 
-function mapStateToProps(state: any): object {
+export interface mapCounterStateToPropsInterface {
+    counter: {
+        value: number
+    }
+}
+export interface mapCounterDispatchToPropsInterface {
+    onInc: () => any | void,
+    onDec: () => any | void,
+    onReset: () => any | void,
+}
+
+function mapStateToProps(state: any): mapCounterStateToPropsInterface {
     return {
         counter: state.counter
     }
 }
-function mapDispatchToProps(dispatch: Redux.Dispatch): object {
+function mapDispatchToProps(dispatch: Redux.Dispatch<any>): mapCounterDispatchToPropsInterface {
     return {
-        onInc: (): Redux.Dispatch => dispatch(incrementAC()),
-        onDec: (): Redux.Dispatch => dispatch(decrementAC()),
-        onReset: (): Redux.Dispatch => dispatch(resetAC()),
+        onInc: () => dispatch(incrementAC()),
+        onDec: () => dispatch(decrementAC()),
+        onReset: () => dispatch(resetAC()),
     }
 }
 
