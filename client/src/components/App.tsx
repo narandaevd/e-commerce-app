@@ -8,10 +8,17 @@ import Main from '../store/reducers/main.types';
 // Components
 import Header from './Header';
 
-const App: React.FC<Main.mapStoreToProps> = (props) => {
+const App: React.FC<Main.StoreToProps> = (props) => {
+    console.log(props);
     return (
         <React.Fragment>
             <Header />
+            <div>
+                {props.counter2.someValue}
+                <button onClick={() => props.onRemove2()}>-2</button>
+                <button onClick={() => props.onReset2()}>0</button>
+                <button onClick={() => props.onAdd2()}>+2</button>
+            </div>
             <div>
                 {props.counter.value}
                 <button onClick={() => props.onDec()}>-1</button>
@@ -22,4 +29,4 @@ const App: React.FC<Main.mapStoreToProps> = (props) => {
     )
 } 
 
-export default connect<Main.mapStateToProps, Main.mapDispatchToProps, any, Main.mapStoreToProps>(mapStateToProps, mapDispatchToProps)(App);
+export default connect<Main.StateToProps, Main.DispatchToProps, any, Main.StoreToProps>(mapStateToProps, mapDispatchToProps)(App);

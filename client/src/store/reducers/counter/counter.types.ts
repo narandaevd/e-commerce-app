@@ -1,16 +1,16 @@
 namespace Counter {
-    export interface counterInitialState {
+    export interface initialState {
         value: number
     };
-    export interface mapStateToProps {
+    export interface StateToProps {
         counter: {
             value: number
         }
     };
-    export interface mapDispatchToProps {
-        onInc: () => any | void,
-        onDec: () => any | void,
-        onReset: () => any | void,
+    export interface DispatchToProps {
+        onInc: () => any,
+        onDec: () => any,
+        onReset: () => any,
     };
 }
 

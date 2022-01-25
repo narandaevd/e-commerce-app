@@ -1,27 +1,28 @@
 import Redux from 'redux';
 import Counter from './counter.types';
+import Utils from '../utils';
 
 const START_LOAD: string = 'START_LOAD';    
 const INCREMENT: string = 'INCREMENT';    
 const DECREMENT: string = 'DECREMENT';    
 const RESET: string = 'RESET';    
 
-const startLoadAC: Function = (): object => ({
+const startLoadAC: Function = (): Redux.Action => ({
     type: START_LOAD,
 })
-const incrementAC: Function = (): object => ({
+const incrementAC: Function = (): Redux.Action => ({
     type: INCREMENT
 })
-const decrementAC: Function = (): object => ({
+const decrementAC: Function = (): Redux.Action => ({
     type: DECREMENT
 })
-const resetAC: Function = (): object => ({
+const resetAC: Function = (): Redux.Action => ({
     type: RESET
 })
 
-const initialState: Counter.counterInitialState = {value: -6};
+const initialState: Counter.initialState = {value: -6};
 
-function countReducer(state: Counter.counterInitialState = initialState, action: Redux.Action): object {
+function reducer(state: any = initialState, action: Redux.Action): object {
     switch (action.type) {
         case START_LOAD:
             return state;
@@ -36,12 +37,12 @@ function countReducer(state: Counter.counterInitialState = initialState, action:
     }
 }
 
-function mapStateToProps(state: any): Counter.mapStateToProps {
+function mapStateToProps(state: any): Counter.StateToProps {
     return {
         counter: state.counter
     }
 }
-function mapDispatchToProps(dispatch: Redux.Dispatch<any>): Counter.mapDispatchToProps {
+function mapDispatchToProps(dispatch: Redux.Dispatch<Redux.Action<any>>): Counter.DispatchToProps {
     return {
         onInc: () => dispatch(incrementAC()),
         onDec: () => dispatch(decrementAC()),
@@ -49,5 +50,7 @@ function mapDispatchToProps(dispatch: Redux.Dispatch<any>): Counter.mapDispatchT
     }
 }
 
-export {mapStateToProps, mapDispatchToProps};
-export default countReducer;
+const counterWrap: Utils.ReducerWrap<Counter.StateToProps, Counter.DispatchToProps> = {
+    reducer, mapStateToProps, mapDispatchToProps,
+} 
+export default counterWrap;
