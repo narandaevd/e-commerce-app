@@ -1,14 +1,14 @@
 import Redux from 'redux';
 import React from 'react';
 import {connect} from 'react-redux';
-import {mapStateToProps, mapDispatchToProps} from '../store/reducers/mainReducer';
+import {mapStateToProps, mapDispatchToProps} from '../store/reducers/main.reducer';
 
-import { mapStoreToProps, mapStateToPropsInterface, mapDispatchToPropsInterface } from '../store/reducers/mainReducer';
+import Main from '../store/reducers/main.types';
 
 // Components
 import Header from './Header';
 
-const App: React.FC<mapStoreToProps> = (props) => {
+const App: React.FC<Main.mapStoreToProps> = (props) => {
     return (
         <React.Fragment>
             <Header />
@@ -22,4 +22,4 @@ const App: React.FC<mapStoreToProps> = (props) => {
     )
 } 
 
-export default connect<mapStateToPropsInterface, mapDispatchToPropsInterface, any, mapStoreToProps>(mapStateToProps, mapDispatchToProps)(App);
+export default connect<Main.mapStateToProps, Main.mapDispatchToProps, any, Main.mapStoreToProps>(mapStateToProps, mapDispatchToProps)(App);

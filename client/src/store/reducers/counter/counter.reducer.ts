@@ -1,4 +1,6 @@
 import Redux from 'redux';
+import Counter from './counter.types';
+
 const START_LOAD: string = 'START_LOAD';    
 const INCREMENT: string = 'INCREMENT';    
 const DECREMENT: string = 'DECREMENT';    
@@ -17,13 +19,9 @@ const resetAC: Function = (): object => ({
     type: RESET
 })
 
-interface counterState {
-    value: number;
-}
+const initialState: Counter.counterInitialState = {value: -6};
 
-const initialState: counterState = {value: -6};
-
-function countReducer(state: counterState = initialState, action: Redux.Action): object {
+function countReducer(state: Counter.counterInitialState = initialState, action: Redux.Action): object {
     switch (action.type) {
         case START_LOAD:
             return state;
@@ -38,23 +36,12 @@ function countReducer(state: counterState = initialState, action: Redux.Action):
     }
 }
 
-export interface mapCounterStateToPropsInterface {
-    counter: {
-        value: number
-    }
-}
-export interface mapCounterDispatchToPropsInterface {
-    onInc: () => any | void,
-    onDec: () => any | void,
-    onReset: () => any | void,
-}
-
-function mapStateToProps(state: any): mapCounterStateToPropsInterface {
+function mapStateToProps(state: any): Counter.mapStateToProps {
     return {
         counter: state.counter
     }
 }
-function mapDispatchToProps(dispatch: Redux.Dispatch<any>): mapCounterDispatchToPropsInterface {
+function mapDispatchToProps(dispatch: Redux.Dispatch<any>): Counter.mapDispatchToProps {
     return {
         onInc: () => dispatch(incrementAC()),
         onDec: () => dispatch(decrementAC()),
