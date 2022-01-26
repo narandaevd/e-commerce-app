@@ -7,24 +7,16 @@ import Main from '../store/reducers/main.types';
 
 // Components
 import Header from './Header';
+import CompanySection from './CompanySection';
+import ProductList from './ProductList';
 
 const App: React.FC<Main.StoreToProps> = (props) => {
     console.log(props);
     return (
         <React.Fragment>
             <Header />
-            <div>
-                {props.counter2.someValue}
-                <button onClick={() => props.onRemoveAmount(10)}>-2</button>
-                <button onClick={() => props.onResetAmount(5)}>0</button>
-                <button onClick={() => props.onAddAmount(10)}>+2</button>
-            </div>
-            <div>
-                {props.counter.value}
-                <button onClick={() => props.onDec()}>-1</button>
-                <button onClick={() => props.onReset()}>0</button>
-                <button onClick={() => props.onInc()}>+1</button>
-            </div>
+            <CompanySection />
+            <ProductList />
         </React.Fragment>
     )
 } 

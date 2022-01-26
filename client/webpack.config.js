@@ -8,31 +8,23 @@ const publicDir = path.resolve(__dirname, 'public');
 
 class Rule {
     constructor() {}
-    setTest(regExp) {
-        this.test = regExp;
-        return this;
-    }
-    setExclude(regExp) {
-        this.exclude = regExp;
-        return this;
-    }
-    setUse(loader) {
-        if (typeof loader === 'string') 
-            this.use = loader;
-        else 
-            this.use = {...loader};
+    setProperty(key, value) {
+        this[key] = value;
         return this;
     }
 }
 
 const TSXRule = new Rule()
-    .setTest(/\.tsx?$/)
-    .setExclude(/node_modules/)
-    .setUse('ts-loader');
+    .setProperty('test', /\.tsx?$/)
+    .setProperty('exclude', /node_modules/)
+    .setProperty('use', 'ts-loader');
 const JSXRule = new Rule()
-    .setTest(/\.jsx$/)
-    .setExclude(/node_modules/)
-    .setUse({loader: 'babel-loader',options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
+    .setProperty('test', /\.jsx$/)
+    .setProperty('exclude', /node_modules/)
+    .setProperty('use', {loader: 'babel-loader',options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
+const CSSRule = new Rule()
+    .setProperty('test', /\.css$/)
+    .setProperty('use', ['style-loader', 'css-loader']);
 
 module.exports = {
     mode: 'development',
@@ -45,7 +37,10 @@ module.exports = {
         extensions: ['.tsx', '.jsx', '.js', '.ts'],
     },
     module: {
-        rules: [TSXRule]
+        rules: [
+            TSXRule,
+            CSSRule
+        ]
     },
     plugins: [
         new HtmlWebpackPlugin({
