@@ -11,7 +11,7 @@ const initialState: Counter2.initialState = {
     flag: true,
 }
 
-function reducer(state: any = initialState, action: Redux.Action): object {
+function reducer(state: Counter2.initialState = initialState, action: Redux.Action<string>): object {
     switch (action.type) {
         case ADD_2:
             return {...state, someValue: state.someValue + 2};
@@ -32,27 +32,30 @@ function mapStateToProps(state: any): Counter2.StateToProps {
     }
 }
 
-function remove2AC(): Redux.Action {
+const removeAmountAC: Redux.ActionCreator<Counter2.removeAmountAction> = (amount: number): Counter2.removeAmountAction => {
     return {
         type: REMOVE_2,
+        amount: amount,
     }
 }
-function add2AC(): Redux.Action {
+const addAmountAC: Redux.ActionCreator<Counter2.addAmountAction> = (amount: number): Counter2.addAmountAction => {
     return {
         type: ADD_2,
+        amount: amount
     }
 }
-function reset2AC(): Redux.Action {
+const resetAmountAC: Redux.ActionCreator<Counter2.resetToValueAction> = (value: number): Counter2.resetToValueAction => {
     return {
         type: RESET_2,
+        newValue: value
     }
 }
 
 function mapDispatchToProps(dispatch: Redux.Dispatch): Counter2.DispatchToProps {
     return {
-        onAdd2: () => dispatch(add2AC()),
-        onRemove2: () => dispatch(remove2AC()),
-        onReset2: () => dispatch(reset2AC()),
+        onAddAmount: (amount) => dispatch(addAmountAC(amount)),
+        onRemoveAmount: (amount) => dispatch(removeAmountAC(amount)),
+        onResetAmount: (value) => dispatch(resetAmountAC(value)),
     }
 }
 

@@ -15,9 +15,9 @@ const App: React.FC<Main.StoreToProps> = (props) => {
             <Header />
             <div>
                 {props.counter2.someValue}
-                <button onClick={() => props.onRemove2()}>-2</button>
-                <button onClick={() => props.onReset2()}>0</button>
-                <button onClick={() => props.onAdd2()}>+2</button>
+                <button onClick={() => props.onRemoveAmount(10)}>-2</button>
+                <button onClick={() => props.onResetAmount(5)}>0</button>
+                <button onClick={() => props.onAddAmount(10)}>+2</button>
             </div>
             <div>
                 {props.counter.value}
