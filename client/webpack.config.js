@@ -21,7 +21,7 @@ const TSXRule = new Rule()
 const JSXRule = new Rule()
     .setProperty('test', /\.jsx$/)
     .setProperty('exclude', /node_modules/)
-    .setProperty('use', {loader: 'babel-loader',options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
+    .setProperty('use', {loader: 'babel-loader', options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
 const CSSRule = new Rule()
     .setProperty('test', /\.css$/)
     .setProperty('use', ['style-loader', 'css-loader']);
