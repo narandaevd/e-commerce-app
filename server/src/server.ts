@@ -10,13 +10,11 @@ async function start(): Promise<any> {
     const PORT: string | 3000 = process.env.PORT || 3000;
     const __dirname: string = path.resolve('./');
     const staticFilesDir: string = path.resolve(__dirname, '../', '../', 'dist');
-    const jsonOptions: object = {extended: true};
     
     const app: express.Application = express();
     
-    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(express.static(staticFilesDir))
-    app.use(express.json(jsonOptions));
     app.use(cors({
         origin: '*',
         methods: ['GET', 'POST'],
@@ -27,7 +25,7 @@ async function start(): Promise<any> {
     // app.use('/auth', null);
     app.use('/user', user);
     
-    app.get('/', (req: express.Request, res: express.Response): void => {
+    app.get('/*', (req: express.Request, res: express.Response): void => {
         res.sendFile(path.resolve(staticFilesDir, 'index.html'));
     })
     
