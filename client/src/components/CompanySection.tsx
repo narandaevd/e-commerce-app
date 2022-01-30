@@ -22,7 +22,7 @@ const DetailButton: React.FC<{}> = styled(Button)`
     
 `
 
-function CompanySection(): React.ReactElement {
+function CompanySection(): React.ReactElement<React.PropsWithChildren<void>> {
   return (
     <StyledSection>
         <SectionInfo>

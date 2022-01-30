@@ -15,7 +15,7 @@ const Header: React.FC<{}> = styled(Box)`
     margin-bottom: 50px;
 `
 
-function ProductList(): React.ReactElement {
+function ProductList(): React.ReactElement<React.PropsWithChildren<void>> {
   return (
       <Container>
         <Header>

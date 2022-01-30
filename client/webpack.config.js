@@ -8,23 +8,34 @@ const publicDir = path.resolve(__dirname, 'public');
 
 class Rule {
     constructor() {}
-    setProperty(key, value) {
-        this[key] = value;
+    setTest(regexp) {
+        this.test = regexp;
+        return this;
+    }
+    setUse(use) {
+        this.use = use;
+        return this;
+    }
+    setExclude(regexp) {
+        this.exclude = regexp;
         return this;
     }
 }
 
 const TSXRule = new Rule()
-    .setProperty('test', /\.tsx?$/)
-    .setProperty('exclude', /node_modules/)
-    .setProperty('use', 'ts-loader');
+    .setTest(/\.tsx?$/)
+    .setExclude(/node_modules/)
+    .setUse('ts-loader');
 const JSXRule = new Rule()
-    .setProperty('test', /\.jsx$/)
-    .setProperty('exclude', /node_modules/)
-    .setProperty('use', {loader: 'babel-loader', options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
+    .setTest(/\.jsx$/)
+    .setExclude(/node_modules/)
+    .setUse({loader: 'babel-loader', options: {presets: ['@babel/preset-react', '@babel/preset-env']}});
 const CSSRule = new Rule()
-    .setProperty('test', /\.css$/)
-    .setProperty('use', ['style-loader', 'css-loader']);
+    .setTest(/\.css$/)
+    .setUse(['style-loader', 'css-loader']);
+const SCSSRule = new Rule()
+    .setTest(/\.s[ac]ss$/)
+    .setUse(['style-loader', 'css-loader', 'sass-loader']);
 
 module.exports = {
     mode: 'development',
@@ -39,7 +50,8 @@ module.exports = {
     module: {
         rules: [
             TSXRule,
-            CSSRule
+            CSSRule,
+            SCSSRule
         ]
     },
     plugins: [
