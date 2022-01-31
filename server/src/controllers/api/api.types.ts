@@ -1,8 +1,8 @@
-import express from 'express';
+import e from 'express';
 
 namespace Types {
     export interface APIController {
-        getImage: (req: express.Request, res: express.Response) => void;
+        getImage: (req: e.Request, res: e.Response) => Promise<any>;
     }
 }
 
